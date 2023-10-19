@@ -1,0 +1,4 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/Programs_extra/Github/VHDL_essentials/CoG/CoG.srcs/verilog/new/CoG_tb_sv.sv" into library xil_defaultlib
+ERROR: [VRFC 10-3195] cannot open include file 'CoG.vhd' [D:/Programs_extra/Github/VHDL_essentials/CoG/CoG.srcs/verilog/new/CoG_tb_sv.sv:1]
+INFO: [VRFC 10-311] analyzing module CoG_uvm_tb
+ERROR: [VRFC 10-8530] module 'CoG_uvm_tb' is ignored due to previous errors [D:/Programs_extra/Github/VHDL_essentials/CoG/CoG.srcs/verilog/new/CoG_tb_sv.sv:6]
