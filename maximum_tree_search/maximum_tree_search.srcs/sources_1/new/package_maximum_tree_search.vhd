@@ -5,6 +5,8 @@ use IEEE.NUMERIC_STD.ALL;
 package package_maximum_tree_search is
 
 type t_maximum_array is array(integer range <>) of integer range 0 to 7;
+type t_maximum_array_3D is array(integer range <>,integer range <>,integer range <>) of integer range 0 to 7;
+type t_maximum_3D is array(integer range <>) of integer; --range determined by max dimension size
 
 function f_maximum_tree_search(
 v_maximum_array: in t_maximum_array)
@@ -16,12 +18,12 @@ package body package_maximum_tree_search is
 --define function for maximum search here
 function f_maximum_tree_search(v_maximum_array: t_maximum_array) 
 return integer is
-variable v_max_location : integer;
+variable v_max_location : integer range 0 to v_maximum_array'length-1;
 variable v_left : t_maximum_array(0 to (v_maximum_array'length/2)-1); --integer division rounds down in vhdl
 variable v_right : t_maximum_array(0 to (v_maximum_array'length-1)/2); --change for uneven length arrays
 begin
 length_check: if(v_maximum_array'length = 1) then --if array-length is 1 return location
-    v_max_location := v_maximum_array(0);
+    v_max_location := 0;-- v_maximum_array(0);
 else --split array and compare recursively
     --split array --simplify this
     --0 to 3, length 4
@@ -29,7 +31,7 @@ else --split array and compare recursively
     --4 to 8, length 5
     v_right := v_maximum_array(v_maximum_array'length/2 to v_maximum_array'length-1); --larger if unequal
     --compare left and right halves of array
-    recurse_if: if(f_maximum_tree_search(v_left) > f_maximum_tree_search(v_right)) then --if maximum is in left half keep location, else add array-length/2 for right
+    recurse_if: if(v_maximum_array(f_maximum_tree_search(v_left)) > v_maximum_array(f_maximum_tree_search(v_right)+ v_maximum_array'length/2)) then --if maximum is in left half keep location, else add array-length/2 for right
         v_max_location := f_maximum_tree_search(v_left);
     else
         v_max_location := f_maximum_tree_search(v_right) + v_maximum_array'length/2; 
